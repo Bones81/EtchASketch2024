@@ -24,3 +24,7 @@ header {
     background: red;
     margin: 0 auto;
 }
+
+.unit-box {
+    border: 1px solid black;
+}
