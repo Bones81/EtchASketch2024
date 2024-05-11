@@ -1,0 +1,26 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-sizing: border-box;
+
+}
+
+header {
+    width: 420px;
+    background-color: aquamarine;
+    padding: 1em;
+    margin: 1em auto;
+    text-align: center;
+    border: 5px dotted magenta;
+    border-radius: 1em;
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 800px;
+    height: 800px;
+    background: red;
+    margin: 0 auto;
+}
