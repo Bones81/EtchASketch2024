@@ -3,7 +3,6 @@
     padding: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     box-sizing: border-box;
-
 }
 
 header {
@@ -24,6 +23,16 @@ header {
 
 }
 
+#wrapper {
+    width: calc(800px + 5em);
+    height: calc(800px + 5em);
+    display: grid;
+    place-items: center;
+    background: red;
+    border-radius: 2em;
+    margin: 2em auto;
+}
+
 #container {
     display: flex;
     flex-wrap: wrap;
@@ -34,14 +43,5 @@ header {
 }
 
 .unit-box {
-    border: 1px solid black;
-}
-
-.test {
-    width: 100px;
-    height: 100px;
-    border: 1px solid red;
-    margin: 1em auto;
-    background-color: rgba(255,0,0,1);
-    color: aquamarine;
+    border: 1px solid grey;
 }

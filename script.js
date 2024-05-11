@@ -1,7 +1,7 @@
 const log = (x) => console.log(x);
 
 const container = document.querySelector('#container')
-const defaultColor = 'rgba(0,0,0,0)'
+const defaultColor = 'rgb(255, 255, 255)'
 
 function chooseGridSize() {
     let size
@@ -27,10 +27,12 @@ function generateRandomRGBColor() {
 
 function changeToRandomColor(e, elem) {
     elem.style.backgroundColor = `rgb(${generateRandomRGBColor()})`;
+    elem.style.opacity = '1.0'
 }
 
 function changeToBlack(e, elem) {
-    elem.style.backgroundColor = 'black'
+    elem.style.backgroundColor = 'rgb(0, 0, 0)'
+    elem.style.opacity = '1.0'
 }
 
 function erase(e, elem) {
@@ -39,7 +41,6 @@ function erase(e, elem) {
 
 function greyscale(e, elem) {
     // Grab and reset opacity of elem
-    log(window.getComputedStyle(elem).backgroundColor);
     let startingColor = window.getComputedStyle(elem).backgroundColor;
     if (startingColor !== 'rgb(0, 0, 0)') {
         elem.style.backgroundColor = 'rgb(0, 0, 0)'
@@ -51,9 +52,16 @@ function greyscale(e, elem) {
             newOpacity = 1
         } 
         elem.style.opacity = `${newOpacity}`
-        log(newOpacity)
     }
 }
+
+function reset() {
+    container.replaceChildren('')
+    drawGrid()
+}
+
+const resetBtn = document.querySelector('#reset-btn')
+resetBtn.addEventListener('click', reset)
 
 let colorMode = changeToBlack
 function setColorMode(e) {
@@ -81,11 +89,6 @@ function setColorMode(e) {
 const colorModeBtns = document.querySelectorAll('.color-mode-btn')
 colorModeBtns.forEach( (btn) => btn.addEventListener('click', setColorMode))
 
-// TESTing Darken listener
-const testBox = document.querySelector('.test')
-testBox.addEventListener('mouseover', (e) => greyscale(e, testBox))
-
-
 function drawGrid() {
     const choice = chooseGridSize();
     let choiceSquared = choice * choice;
@@ -111,5 +114,3 @@ function drawGrid() {
 }
 
 drawGrid()
-
-log(returnGridSize());
