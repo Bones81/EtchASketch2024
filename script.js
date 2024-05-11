@@ -65,7 +65,6 @@ resetBtn.addEventListener('click', reset)
 
 let colorMode = changeToBlack
 function setColorMode(e) {
-    log(e.target.id)
     let target = e.target.id
     switch(target) {
         case 'black-btn':
@@ -95,11 +94,10 @@ function drawGrid() {
     // DETERMINE Size of boxes in #container
     // Size of grid in px wide / choice = size of box in px wide
     let widthOfUnit = container.getBoundingClientRect().width / choice;
-    console.log("widthOfUnit: " + widthOfUnit);
-    // console.log(widthOfUnit);
+    
     // number of boxes should equal choiceSquared
     let numOfBoxes = choiceSquared;
-    console.log("numOfBoxes: " + numOfBoxes);
+    
     // Generate number of boxes of appropriate box size inside #container
     for (let i = 0; i < numOfBoxes; i++) {
       const unitBox = document.createElement("div");
