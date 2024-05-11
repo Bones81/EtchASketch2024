@@ -37,23 +37,53 @@ function erase(e, elem) {
     elem.style.backgroundColor = defaultColor
 }
 
-function darken(e, elem) {
+function greyscale(e, elem) {
     // Grab and reset opacity of elem
-    log(window.getComputedStyle(elem).opacity)
-    let oldOpacity = +window.getComputedStyle(elem).opacity;
-    let newOpacity = oldOpacity + 0.1
-    if (newOpacity > 1) {
-        newOpacity = 1
-    } else if (newOpacity< 0) {
-        newOpacity = 0
-    } 
-    elem.style.opacity = `${newOpacity}`
+    log(window.getComputedStyle(elem).backgroundColor);
+    let startingColor = window.getComputedStyle(elem).backgroundColor;
+    if (startingColor !== 'rgb(0, 0, 0)') {
+        elem.style.backgroundColor = 'rgb(0, 0, 0)'
+        elem.style.opacity = '0.1'
+    } else {
+        let oldOpacity = +window.getComputedStyle(elem).opacity;
+        let newOpacity = oldOpacity + 0.1
+        if (newOpacity > 1) {
+            newOpacity = 1
+        } 
+        elem.style.opacity = `${newOpacity}`
+        log(newOpacity)
+    }
 }
 
+let colorMode = changeToBlack
+function setColorMode(e) {
+    log(e.target.id)
+    let target = e.target.id
+    switch(target) {
+        case 'black-btn':
+            colorMode = changeToBlack
+            break;
+        case 'random-btn':
+            colorMode = changeToRandomColor
+            break;
+        case 'greyscale-btn':
+            colorMode = greyscale
+            break;
+        case 'eraser-btn':
+            colorMode = erase
+            break;
+        default:
+            log('An error has occurred.')
+    }
+    return colorMode
+}
+
+const colorModeBtns = document.querySelectorAll('.color-mode-btn')
+colorModeBtns.forEach( (btn) => btn.addEventListener('click', setColorMode))
 
 // TESTing Darken listener
 const testBox = document.querySelector('.test')
-testBox.addEventListener('click', (e) => darken(e, testBox))
+testBox.addEventListener('mouseover', (e) => greyscale(e, testBox))
 
 
 function drawGrid() {
@@ -75,7 +105,7 @@ function drawGrid() {
       unitBox.style.height = widthOfUnit;
 
 
-      unitBox.addEventListener("mouseover", (e) => changeToRandomColor(e, unitBox));
+      unitBox.addEventListener("mouseover", (e) => colorMode(e, unitBox));
       container.appendChild(unitBox);
     }
 }
