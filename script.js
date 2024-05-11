@@ -1,3 +1,5 @@
+const log = (x) => console.log(x);
+
 const container = document.querySelector('#container')
 
 function getGridSize() {
@@ -27,9 +29,8 @@ for(let i = 0; i < numOfBoxes; i++) {
     unitBox.style.height = widthOfUnit
 
     function changeColor(e, elem) {
-        console.log(e.target);
+        // log(e.target)
         elem.style.backgroundColor = `rgb(${generateRandomRGBColor()})`
-        console.log('event fired');
     }
     unitBox.addEventListener('mouseover', (e) => changeColor(e, unitBox))
     container.appendChild(unitBox)
